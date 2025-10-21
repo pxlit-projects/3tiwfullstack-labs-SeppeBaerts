@@ -5,10 +5,9 @@ import be.pxl.services.domain.Employee;
 import java.util.List;
 
 public interface IEmployeeService {
-
     List<Employee> getAllEmployees();
     Employee addEmployee(Employee employee);
-    Employee findById(int id);
+    Employee findById(Long id);
     List<Employee> findByDepartment(Long departmentId);
     List<Employee> findByOrganization(Long organizationId);
 }

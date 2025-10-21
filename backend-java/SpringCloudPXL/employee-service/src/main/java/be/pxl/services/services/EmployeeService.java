@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -24,21 +25,21 @@ public class EmployeeService implements IEmployeeService {
     }
 
     @Override
-    public Employee findById(int id) {
+    public Employee findById(Long id) {
         return employeeRepository.findById(id).orElse(null);
     }
 
     @Override
     public List<Employee> findByDepartment(Long departmentId) {
-        return employeeRepository.findAll().stream()
-                .filter(employee -> employee.getDepartmentId().equals(departmentId))
-                .toList();
+    return employeeRepository.findAll().stream()
+        .filter(employee -> Objects.equals(employee.getDepartmentId(), departmentId))
+        .toList();
     }
 
     @Override
     public List<Employee> findByOrganization(Long organizationId) {
-        return employeeRepository.findAll().stream()
-                .filter(employee -> employee.getOrganizationId().equals(organizationId))
-                .toList();
+    return employeeRepository.findAll().stream()
+        .filter(employee -> Objects.equals(employee.getOrganizationId(), organizationId))
+        .toList();
     }
 }
